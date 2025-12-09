@@ -1,0 +1,65 @@
+# Global
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Environment & secrets
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env/
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+pytestdebug.log
+
+# Backend builds & artifacts
+backend/app/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+
+# Generated PDFs
+backend/app/output/*.pdf
+*.pdf
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+
+# Vite / build outputs
+frontend/dist/
+frontend/.vite/
+dist/
+.vite/
+
+# Cache
+.cache/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.iml
+
+# OS / misc
+Desktop.ini
+
+# Testing artifacts
+junit.xml
+
+# Temporary files
+/tmp/

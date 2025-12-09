@@ -1,0 +1,175 @@
+            <!-- backend/app/templates/strategy_pdf.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Blackjack Basic Strategy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      margin: 20px;
+    }
+
+    h1 {
+      font-size: 18pt;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 14pt;
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    p, ul {
+      margin: 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      width: 100%;
+      font-size: 8pt;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 4px 6px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    .player-header {
+      text-align: left;
+      width: 60px;
+    }
+
+    .section-title {
+      margin-top: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Couleurs par type d'action */
+    .action-H {
+      background-color: #fef3c7; /* jaune pâle */
+    }
+    .action-S {
+      background-color: #bbf7d0; /* vert pâle */
+    }
+    .action-D {
+      background-color: #bfdbfe; /* bleu pâle */
+    }
+    .action-P {
+      background-color: #fecaca; /* rouge pâle */
+    }
+    .action-R {
+      background-color: #e5e7eb; /* gris clair */
+    }
+
+    .legend {
+      font-size: 9pt;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blackjack Basic Strategy</h1>
+
+  <h2>Rules</h2>
+  <ul>
+    <li>Decks: {{ rules.num_decks }}</li>
+    <li>CSM: {{ 'Yes' if rules.csm else 'No' }}</li>
+    <li>Dealer hits soft 17 (H17): {{ 'Yes' if rules.dealer_hits_soft_17 else 'No (S17)' }}</li>
+    <li>European no hole card (ENHC): {{ 'Yes' if rules.european_no_hole_card else 'No (US hole card)' }}</li>
+    <li>Split aces allowed: {{ 'Yes' if rules.allow_split_aces else 'No' }}</li>
+    <li>Resplit aces allowed: {{ 'Yes' if rules.allow_resplit_aces else 'No' }}</li>
+    <li>Double after split (DAS): {{ 'Yes' if rules.allow_double_after_split else 'No' }}</li>
+    <li>Surrender allowed: {{ 'Yes' if rules.allow_surrender else 'No' }}</li>
+    <li>Surrender vs Ace: {{ 'Yes' if rules.surrender_allowed_vs_ace else 'No' }}</li>
+    <li>One card only after split aces: {{ 'Yes' if rules.one_card_only_after_split_aces else 'No' }}</li>
+  </ul>
+
+  <div class="legend">
+    <strong>Legend:</strong>
+    H = Hit, S = Stand, D = Double, P = Split, R = Surrender
+  </div>
+
+  <!-- Hard totals -->
+  <h2 class="section-title">Hard totals</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="player-header">Player</th>
+        {% for header in dealer_headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for total, row in hard_rows %}
+      <tr>
+        <td class="player-header">{{ total }}</td>
+        {% for header in dealer_headers %}
+          {% set action = row[header] %}
+          <td class="action-{{ action }}">{{ action }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Soft totals -->
+  <h2 class="section-title">Soft totals</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="player-header">Player</th>
+        {% for header in dealer_headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for total, row in soft_rows %}
+      <tr>
+        <td class="player-header">{{ total }}</td>
+        {% for header in dealer_headers %}
+          {% set action = row[header] %}
+          <td class="action-{{ action }}">{{ action }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Pairs -->
+  <h2 class="section-title">Pairs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="player-header">Pair</th>
+        {% for header in dealer_headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for pair_label, row in pairs_rows %}
+      <tr>
+        <td class="player-header">{{ pair_label }}-{{ pair_label }}</td>
+        {% for header in dealer_headers %}
+          {% set action = row[header] %}
+          <td class="action-{{ action }}">{{ action }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>
