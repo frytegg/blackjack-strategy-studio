@@ -74,3 +74,65 @@ GET http://localhost:8000/health
 Swagger / docs FastAPI :
 
 http://localhost:8000/docs
+
+---
+
+## 4. Aperçu visuel (UI)
+
+<p align="center">
+  <img src="https://via.placeholder.com/1200x650.png?text=Blackjack+Strategy+Studio+-+UI+Overview" alt="UI overview" />
+</p>
+
+<p align="center">
+  <img src="https://via.placeholder.com/1200x650.png?text=Strategy+Tables+-+Hard/Soft/Pairs" alt="Strategy tables screenshot" />
+</p>
+
+<p align="center">
+  <img src="https://via.placeholder.com/1200x650.png?text=PDF+Export+-+Printable+Card" alt="PDF export screenshot" />
+</p>
+
+### Points clés UI
+- Interface React moderne (Vite) avec tables colorées et légende.
+- Formulaire de règles flexible (S17/H17, DAS, RSA, ENHC, decks, etc.).
+- Aperçu instantané des décisions: Hit/Stand/Double/Split/Surrender.
+- Export PDF haute qualité depuis le backend (template HTML).
+
+### Badges
+
+<p>
+  <img alt="React" src="https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?logo=react&logoColor=white" />
+  <img alt="FastAPI" src="https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white" />
+  <img alt="Tests" src="https://img.shields.io/badge/Tests-Pytest-6DB33F?logo=pytest&logoColor=white" />
+  <img alt="License" src="https://img.shields.io/badge/Status-Project%20Lab-blue" />
+  
+</p>
+
+---
+
+## 5. Lancer le frontend
+
+Depuis le dossier `frontend` :
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Par défaut: http://localhost:5173 (Vite).
+
+---
+
+## 6. Essai rapide
+
+- Démarrez le backend (`uvicorn app.main:app --reload --port 8000`).
+- Démarrez le frontend (`npm run dev`).
+- Configurez les règles dans l’UI et observez les tables.
+- Exportez le PDF via le bouton dédié.
+
+---
+
+## 7. À propos
+
+Ce projet démontre une architecture claire (moteur Python testé + UI moderne) et une valeur pratique: visualiser et exporter une basic strategy adaptée aux règles de casino.
