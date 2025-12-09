@@ -54,16 +54,19 @@ pip install -r requirements.txt
 
 Lancer le serveur FastAPI (dev) :
 
+```bash
 uvicorn app.main:app --reload --port 8000
-
+```
 
 Endpoints principaux :
 
 POST http://localhost:8000/strategy
+
 Corps JSON : configuration des règles (voir ci-dessous).
 Réponse JSON : stratégie avec rules, hard, soft, pairs.
 
 POST http://localhost:8000/strategy/pdf
+
 Corps JSON : même configuration.
 Réponse : application/pdf + fichier binaire (avec header Content-Disposition pour le téléchargement).
 
@@ -78,18 +81,6 @@ http://localhost:8000/docs
 ---
 
 ## 4. Aperçu visuel (UI)
-
-<p align="center">
-  <img src="https://via.placeholder.com/1200x650.png?text=Blackjack+Strategy+Studio+-+UI+Overview" alt="UI overview" />
-</p>
-
-<p align="center">
-  <img src="https://via.placeholder.com/1200x650.png?text=Strategy+Tables+-+Hard/Soft/Pairs" alt="Strategy tables screenshot" />
-</p>
-
-<p align="center">
-  <img src="https://via.placeholder.com/1200x650.png?text=PDF+Export+-+Printable+Card" alt="PDF export screenshot" />
-</p>
 
 ### Points clés UI
 - Interface React moderne (Vite) avec tables colorées et légende.
